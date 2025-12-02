@@ -11,8 +11,7 @@ class Subject extends Model
         'code_subject',
     ];
 
-    public function students()
-    {
-        return $this->hasMany(Student::class);
+    public function teachers(){
+        return $this->hasMany(Teacher::class,'subjects_id');
     }
 }

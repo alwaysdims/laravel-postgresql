@@ -11,6 +11,14 @@ class Student extends Model
         'nama',
         'nis',
         'class_id',
-        'major_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function classes(){
+        return $this->belongsTo(Classes::class,'class_id');
+    }
 }

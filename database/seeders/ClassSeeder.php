@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Kelas;
+use App\Models\Classes;
 
 class ClassSeeder extends Seeder
 {
@@ -11,18 +11,18 @@ class ClassSeeder extends Seeder
     {
         // pastikan model: Class → Classes (atau sesuaikan)
 
-        Kelas::create([
-            'name' => 'X RPL 1',
+        Classes::create([
+            'name' => 'X RB',
             'major_id' => 1
         ]);
 
-        Kelas::create([
-            'name' => 'XI TKJ 1',
+        Classes::create([
+            'name' => 'XI OA',
             'major_id' => 2
         ]);
 
-        Kelas::create([
-            'name' => 'XII MM 1',
+        Classes::create([
+            'name' => 'XII TC',
             'major_id' => 3
         ]);
     }

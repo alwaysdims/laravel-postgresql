@@ -9,5 +9,9 @@ class Major extends Model
     protected $fillable = [
         'name',
         'code_major',
-        ];
+    ];
+    public function classes()
+    {
+        return $this->hasMany(Classes::class, 'major_id');
+    }
 }

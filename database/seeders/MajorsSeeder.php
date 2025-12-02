@@ -15,13 +15,17 @@ class MajorsSeeder extends Seeder
         ]);
 
         Major::create([
-            'code_major' => 'TKJ',
-            'name' => 'Teknik Komputer Jaringan'
+            'code_major' => 'OT',
+            'name' => 'Teknik Ototronik'
         ]);
 
         Major::create([
-            'code_major' => 'MM',
-            'name' => 'Multimedia'
+            'code_major' => 'TPK',
+            'name' => 'Teknik Pembuatan Kain'
+        ]);
+        Major::create([
+            'code_major' => 'TM',
+            'name' => 'Teknik Mesin'
         ]);
     }
 }

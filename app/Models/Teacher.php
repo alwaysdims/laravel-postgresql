@@ -10,13 +10,16 @@ class Teacher extends Model
         'user_id',
         'nip',
         'name',
-        'subject',
+        'subjects_id',
         'address',
         'number_phone',
     ];
-
-    public function subjects()
+    public function user()
     {
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function subject(){
+        return $this->belongsTo(Subject::class,'subjects_id');
     }
 }

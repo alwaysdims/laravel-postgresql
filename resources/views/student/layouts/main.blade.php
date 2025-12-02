@@ -70,7 +70,7 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-       @include('admin.layouts.sidebar')
+       @include('student.layouts.sidebar')
 
         <!-- Layout container -->
         <div class="layout-page">
@@ -90,7 +90,7 @@
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                    ADMIN SKANDA PRESENT | {{ $title }}
+                    STUDENT SKANDA PRESENT | {{ $title }}
                 </div>
               </div>
               <!-- /Search -->
@@ -130,6 +130,15 @@
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
                     </li>
                     <li>
                         <form id="logoutForm" action="{{ route('logout') }}" method="POST">
@@ -191,6 +200,6 @@
     </div>
     <!-- / Layout wrapper -->
 
-    @include('admin.layouts.js')
+    @include('student.layouts.js')
   </body>
 </html>
