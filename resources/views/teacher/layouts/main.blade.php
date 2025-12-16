@@ -85,7 +85,7 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-       @include('student.layouts.sidebar')
+       @include('teacher.layouts.sidebar')
 
         <!-- Layout container -->
         <div class="layout-page">
@@ -207,6 +207,6 @@
     </div>
     <!-- / Layout wrapper -->
 
-    @include('student.layouts.js')
+    @include('teacher.layouts.js')
   </body>
 </html>

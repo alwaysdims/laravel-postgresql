@@ -16,18 +16,5 @@ class StudentsSeeder extends Seeder
             'class_id' => 1
         ]);
 
-        Student::create([
-            'user_id' => 3,
-            'nis' => '220002',
-            'nama' => 'Aulia Sari',
-            'class_id' => 2
-        ]);
-
-        Student::create([
-            'user_id' => 3,
-            'nis' => '220003',
-            'nama' => 'Rizky Ramadhan',
-            'class_id' => 3
-        ]);
     }
 }

@@ -11,6 +11,7 @@ class Classes extends Model
     protected $fillable = [
         'name',
         'major_id',
+        'teacher_id',
     ];
     public function major()
     {
@@ -21,5 +22,5 @@ class Classes extends Model
     {
         return $this->hasMany(Student::class, 'class_id');
     }
-    
+
 }

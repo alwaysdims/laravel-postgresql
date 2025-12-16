@@ -12,18 +12,9 @@ class ClassSeeder extends Seeder
         // pastikan model: Class → Classes (atau sesuaikan)
 
         Classes::create([
-            'name' => 'X RB',
-            'major_id' => 1
-        ]);
-
-        Classes::create([
-            'name' => 'XI OA',
-            'major_id' => 2
-        ]);
-
-        Classes::create([
-            'name' => 'XII TC',
-            'major_id' => 3
+            'name' => 'XII RB',
+            'major_id' => 1,
+            'teacher_id' => 1
         ]);
     }
 }

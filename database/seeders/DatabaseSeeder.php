@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             SubjectsSeeder::class,
             MajorsSeeder::class,
+            TeachersSeeder::class,
             ClassSeeder::class,
             AdminsSeeder::class,
-            TeachersSeeder::class,
             StudentsSeeder::class,
-            AttendancesSeeder::class,
+            // AttendancesSeeder::class,
         ]);
     }
 

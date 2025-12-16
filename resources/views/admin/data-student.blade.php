@@ -190,20 +190,20 @@
     </div>
 </div>
 
-<style>
-    .swal2-container {
-        z-index: 20000 !important;
-    }
+    <style>
+        .swal2-container {
+            z-index: 20000 !important;
+        }
 
-    .swal2-backdrop-show {
-        z-index: 20000 !important;
-    }
+        .swal2-backdrop-show {
+            z-index: 20000 !important;
+        }
 
-    .swal2-popup {
-        z-index: 21000 !important;
-    }
+        .swal2-popup {
+            z-index: 21000 !important;
+        }
 
-</style>
+    </style>
 
 
 <script>

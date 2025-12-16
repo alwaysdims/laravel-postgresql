@@ -131,6 +131,15 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">Wali Kelas</label>
+                        <select name="teacher_id" class="form-select" required>
+                            <option value="">-- Pilih Wali Kelas --</option>
+                            @foreach($teachers as $id => $name)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>

@@ -33,6 +33,7 @@ class TeacherController extends Controller
             'number_phone'  => 'nullable|string|max:15',
         ]);
 
+
         DB::beginTransaction();
         try {
             // Buat User dulu (role = teacher)
@@ -49,7 +50,7 @@ class TeacherController extends Controller
                 'user_id'      => $user->id,
                 'nip'          => $request->nip,
                 'name'         => $request->name,
-                'subject_id'      => $request->subject_id,
+                'subjects_id'      => $request->subject_id,
                 'address'      => $request->address,
                 'number_phone' => $request->number_phone,
             ]);

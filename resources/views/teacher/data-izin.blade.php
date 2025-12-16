@@ -1,64 +1,5 @@
-@extends('student.layouts.main',['title' => 'Pengajuan Izin atau Sakit'])
+@extends('teacher.layouts.main',['title' => 'Izin Siswa'])
 @section('content')
-
-
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title m-0">
-            Pengajuan Izin / Sakit 📄
-        </h5>
-    </div>
-    <div class="card-body">
-        <form action="{{ route('izin.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @php
-            use Illuminate\Support\Facades\Auth;
-            use Illuminate\Support\Facades\DB; // Add this line
-
-            $userId = Auth::user()->id;
-            $student_id = DB::table('students')->where('user_id',$userId)->value('id'); // Get student ID
-
-            @endphp
-            <input type="hidden" name="student_id" value="{{ $student_id }}">
-
-            <div class="mb-3">
-                <label for="type" class="form-label">Jenis Pengajuan <span class="text-danger">*</span></label>
-                <select class="form-select" id="type" name="type" required>
-                    <option value="" disabled selected>Pilih jenis...</option>
-                    <option value="izin">Izin (Keperluan Tertentu)</option>
-                    <option value="sakit">Sakit</option>
-                </select>
-                <div class="form-text">Pilih antara **Izin** atau **Sakit**.</div>
-            </div>
-
-            <div class="mb-3">
-                <label for="start_date" class="form-label">Tanggal Mulai <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="start_date" name="start_date" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="end_date" class="form-label">Tanggal Berakhir (Opsional)</label>
-                <input type="date" class="form-control" id="end_date" name="end_date">
-                <div class="form-text">Isi jika izin/sakit lebih dari 1 hari. Jika 1 hari, biarkan kosong.</div>
-            </div>
-
-            <div class="mb-3">
-                <label for="reason" class="form-label">Alasan / Keterangan <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="reason" name="reason" rows="3" placeholder="Jelaskan alasan pengajuan izin atau sakit Anda..." required></textarea>
-            </div>
-
-            <div class="mb-4">
-                <label for="attachment" class="form-label">Bukti Lampiran (Surat Dokter/Orang Tua/Foto) <span class="text-danger">*</span></label>
-                <input class="form-control" type="file" id="attachment" name="attachment">
-                <div class="form-text">Upload foto, surat dokter, atau surat orang tua sebagai bukti pendukung.</div>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg w-100">
-                <i class="bx bx-send me-1"></i> Ajukan Izin / Sakit
-            </button>
-        </form>
-
-    </div>
 
 @endsection
 
@@ -110,10 +51,10 @@
         const previewImage = document.getElementById('image-preview');
 
         if (inputPhoto) {
-            inputPhoto.addEventListener('change', function(event) {
+            inputPhoto.addEventListener('change', function (event) {
                 if (event.target.files && event.target.files[0]) {
                     const reader = new FileReader();
-                    reader.onload = function(e) {
+                    reader.onload = function (e) {
                         previewImage.src = e.target.result;
                         previewImage.style.display = 'block';
                     }
@@ -126,6 +67,7 @@
     // Panggil fungsi sekali saat load, lalu ulangi setiap detik
     setInterval(updateDateTime, 1000);
     updateDateTime();
+
 </script>
 <script>
     navigator.geolocation.getCurrentPosition(
@@ -137,4 +79,5 @@
             console.log("Lokasi tidak diizinkan");
         }
     );
+
 </script>

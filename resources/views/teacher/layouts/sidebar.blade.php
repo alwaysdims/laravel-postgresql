@@ -70,11 +70,24 @@
 
     <ul class="menu-inner py-1">
 
-        {{-- Admins --}}
-        <li class="menu-item {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
-            <a href="{{ route('student.dashboard') }}" class="menu-link">
+        <li class="menu-item {{ request()->routeIs('teacher.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('teacher.dashboard') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bx-home-circle'></i>
                 <div data-i18n="Analytics">Dashboard</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ request()->routeIs('teacher.attendances') ? 'active' : '' }}">
+            <a href="{{ route('teacher.attendances') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-calendar-check'></i>
+                <div data-i18n="Analytics">Atendances</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ request()->routeIs('teacher.permissions') ? 'active' : '' }}">
+            <a href="{{ route('teacher.permissions') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-id-card'></i>
+                <div data-i18n="Analytics">Permission</div>
             </a>
         </li>
 

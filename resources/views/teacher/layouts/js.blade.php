@@ -44,6 +44,7 @@
     });
 
 </script>
+
 <script>
     // =========================
     // Sweet Alert Flash Message
@@ -54,10 +55,7 @@
         title: 'Berhasil!',
         text: '{{ session("success") }}',
         timer: 1800,
-        showConfirmButton: false,
-        didClose: () => {
-            location.reload();
-        }
+        showConfirmButton: false
     });
     @endif
 
@@ -67,10 +65,7 @@
         title: 'Gagal!',
         text: '{{ session("error") }}',
         timer: 2000,
-        showConfirmButton: false,
-        didClose: () => {
-            location.reload();
-        }
+        showConfirmButton: false
     });
     @endif
 
@@ -80,10 +75,8 @@
         title: 'Peringatan!',
         text: '{{ session("warning") }}',
         timer: 2000,
-        showConfirmButton: false,
-        didClose: () => {
-            location.reload();
-        }
+        showConfirmButton: false
     });
     @endif
+
 </script>

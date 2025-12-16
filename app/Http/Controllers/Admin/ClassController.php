@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Classes;
 use App\Models\Major;
+use App\Models\Classes;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ClassController extends Controller
 {
@@ -14,42 +15,50 @@ class ClassController extends Controller
     {
         $classes = Classes::with('major')->latest()->get();
         $majors  = Major::pluck('name', 'id'); // untuk select di modal
-        return view('admin.class', compact('classes', 'majors'));
+        $teachers = Teacher::pluck('name', 'id'); // corrected variable name
+        return view('admin.class', compact('classes', 'majors', 'teachers'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name'      => 'required|string|max:50',
-            'major_id'  => 'required|exists:majors,id',
-        ], [
-            'major_id.exists' => 'Jurusan yang dipilih tidak valid.',
+            'name'       => 'required|string|max:50',
+            'major_id'   => 'required|exists:majors,id',
+            'teacher_id' => 'required|exists:teachers,id',
         ]);
 
-        // Cek apakah nama kelas + jurusan sudah ada (unik per jurusan)
-        $exists = Classes::where('name', $request->name)
-                         ->where('major_id', $request->major_id)
-                         ->exists();
+        $name = strtoupper($request->name);
 
-        if ($exists) {
-            return redirect()->back()->with('error', 'Kelas dengan nama tersebut sudah ada di jurusan ini.');
+        // Cek nama kelas sudah ada (unik seluruh sekolah)
+        $nameExists = Classes::where('name', $name)->exists();
+        if ($nameExists) {
+            return redirect()->back()->with('error', 'Nama kelas sudah digunakan!');
+        }
+
+        // Cek guru sudah menjadi wali kelas lain
+        $teacherExists = Classes::where('teacher_id', $request->teacher_id)->exists();
+        if ($teacherExists) {
+            return redirect()->back()->with('error', 'Guru tersebut sudah menjadi wali kelas lain!');
         }
 
         DB::beginTransaction();
         try {
             Classes::create([
-                'name'     => strtoupper($request->name),
-                'major_id' => $request->major_id,
+                'name'       => $name,
+                'major_id'   => $request->major_id,
+                'teacher_id' => $request->teacher_id,
             ]);
 
             DB::commit();
             return redirect()->route('data.classes.index')
-                ->with('success', 'Kelas berhasil ditambahkan.');
+                ->with('success', 'Kelas berhasil ditambahkan!');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Gagal menambah kelas.');
+            return redirect()->back()
+                ->with('error', 'Gagal menambah kelas: ' . $e->getMessage());
         }
     }
+
 
     public function update(Request $request, $id)
     {

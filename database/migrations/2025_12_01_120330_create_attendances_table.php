@@ -6,33 +6,38 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
 
-            $table->dateTime('date');
+            // Tanggal presensi (1 record per hari)
+            $table->date('date');
 
-            $table->enum('status', ['hadir','izin','sakit','alpha'])->default('alpha');
-            
-            // Path foto presensi
-            $table->string('foto');
+            // ABSEN MASUK
+            $table->timestamp('check_in_time')->nullable();
+            $table->string('check_in_photo')->nullable();
+            $table->string('check_in_latitude')->nullable();
+            $table->string('check_in_longitude')->nullable();
 
-            // Tambahan koordinat lokasi
-            $table->string('latitude')->nullable();  // contoh: -7.123456
-            $table->string('longitude')->nullable(); // contoh: 110.987654
+            // ABSEN PULANG
+            $table->timestamp('check_out_time')->nullable();
+            $table->string('check_out_photo')->nullable();
+            $table->string('check_out_latitude')->nullable();
+            $table->string('check_out_longitude')->nullable();
+
+            // status: hadir/izin/sakit/alpha
+            $table->enum('status', ['hadir', 'izin', 'sakit', 'alpha'])->default('alpha');
 
             $table->timestamps();
+
+            // Untuk memastikan 1 siswa hanya punya 1 presensi per hari
+            $table->unique(['student_id', 'date']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('attendances');

@@ -202,27 +202,51 @@
 
     <!-- Page JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        @if (session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil',
-                text: '{{ session("success") }}',
-                timer: 1800,
-                showConfirmButton: false
-            });
-        @endif
 
-        @if (session('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Login Gagal!',
-                text: '{{ session("error") }}',
-                timer: 2000,
-                showConfirmButton: false
-            });
-        @endif
-        </script>
+<script>
+    // =========================
+    // Sweet Alert Flash Message
+    // =========================
+    @if(session('success'))
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: '{{ session("success") }}',
+        timer: 1800,
+        showConfirmButton: false,
+        didClose: () => {
+            location.reload();
+        }
+    });
+    @endif
+
+    @if(session('error'))
+    Swal.fire({
+        icon: 'error',
+        title: 'Gagal!',
+        text: '{{ session("error") }}',
+        timer: 2000,
+        showConfirmButton: false,
+        didClose: () => {
+            location.reload();
+        }
+    });
+    @endif
+
+    @if(session('warning'))
+    Swal.fire({
+        icon: 'warning',
+        title: 'Peringatan!',
+        text: '{{ session("warning") }}',
+        timer: 2000,
+        showConfirmButton: false,
+        didClose: () => {
+            location.reload();
+        }
+    });
+    @endif
+</script>
+
 
 
     <!-- Place this tag in your head or just before your close body tag. -->
